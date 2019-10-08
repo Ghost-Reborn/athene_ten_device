@@ -45,18 +45,6 @@
             android:label="@string/moto_actions_title"
             android:summary="@string/screen_gestures_panel_summary"
             android:theme="@style/MotoActions">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.homepage" />
-            <meta-data
-                android:name="com.android.settings.icon"
-                android:resource="@drawable/ic_settings_gestures_dashboard" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/screen_gestures_panel_summary" />
         </activity>
 
     </application>
