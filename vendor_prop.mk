@@ -46,6 +46,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	vendor.audio_hal.period_size=240 \
 	persist.audio.endcall.delay=250
 
+# Debug
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.debuggable=1
+
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
 	bluetooth.hfp.client=1 \
@@ -242,7 +249,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.vendor.radio.apm_sim_not_pwdn=1 \
 	persist.vendor.radio.lte_vrte_ltd=1 \
 	persist.vendor.radio.cs_srv_type=1 \
-	persist.vendor.radio.jbims=1
 
 # Rescue party
 PRODUCT_PROPERTY_OVERRIDES += \
