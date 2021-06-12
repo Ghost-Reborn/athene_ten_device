@@ -93,7 +93,8 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm8952
+    audio.primary.msm8952 \
+	android.hidl.manager-V1.0-java
 
 PRODUCT_COPY_FILES +=  \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
