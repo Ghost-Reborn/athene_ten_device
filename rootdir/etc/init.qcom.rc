@@ -497,6 +497,13 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
 on property:sys.boot_completed=1
+	# Safetynet bypass
+    # Inspired in magisk source code, by topjohnwu
+    # Ported to ramdisk by jhenrique09
+    # selinux nodes, hide permissive state
+    chmod 0640 /sys/fs/selinux/enforce
+    chmod 0440 /sys/fs/selinux/policy
+
     start vendor.mmi-laser-sh
 
     # CPE fw_name used by sound trigger HAL

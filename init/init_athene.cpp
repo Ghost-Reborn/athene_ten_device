@@ -115,6 +115,13 @@ void vendor_load_properties()
         property_set("persist.radio.is_wps_enabled", "true");
         property_set("persist.radio.pb.max.match", "10");
     }
+	    // Magisk Hide
+    property_override("ro.boot.verifiedbootstate", "green");
+    property_override("ro.oem_unlock_supported", "0");
+    property_override("ro.boot.vbmeta.device_state", "locked");
+    property_override("ro.boot.veritymode", "enforcing");
+    property_override("ro.build.type", "user");
+    property_override("ro.build.tags", "release-keys");
 }
 
 /* Target-Specific Dalvik Heap & HWUI Configuration */

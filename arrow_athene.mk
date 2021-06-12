@@ -43,10 +43,10 @@ PRODUCT_MANUFACTURER := Motorola
 BOARD_VENDOR := motorola
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-	PRIVATE_BUILD_DESC="athene_f-user 8.1.0 OPJ28.111 12 release-keys" \
+	PRIVATE_BUILD_DESC="coral-user 11 RQ1A.201205.008 6943376 release-keys" \
 	PRODUCT_NAME="athene" \
 	TARGET_DEVICE="athene" \
-	DEVICE_MAINTAINERS="fuyukihidekii"
+	DEVICE_MAINTAINERS="GhostReborn"
 
 PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
@@ -55,5 +55,5 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
 TARGET_EXCLUDE_LAWNCHAIR := true
 
 # Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := google/coral/coral:10/QQ3A.200705.002/6506677:user/release-keys 
-VENDOR_BUILD_FINGERPRINT := google/coral/coral:10/QQ3A.200705.002/6506677:user/release-keys 
+BUILD_FINGERPRINT := google/coral/coral:11/RQ1A.201205.008/6943376:user/release-keys
+VENDOR_BUILD_FINGERPRINT := google/coral/coral:11/RQ1A.201205.008/6943376:user/release-keys 
