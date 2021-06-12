@@ -218,6 +218,9 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 # CNE and DPM
 BOARD_USES_QCNE := true
 
+#Lawncahir remove
+TARGET_EXCLUDE_LAWNCHAIR := true
+
 # Sensors
 USE_SENSOR_MULTI_HAL := true
 BOARD_USES_MOT_SENSOR_HUB := true
