@@ -221,6 +221,9 @@ BOARD_USES_QCNE := true
 #Lawncahir remove
 TARGET_EXCLUDE_LAWNCHAIR := true
 
+#Netd	
+TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
+
 # Sensors
 USE_SENSOR_MULTI_HAL := true
 BOARD_USES_MOT_SENSOR_HUB := true
