@@ -119,7 +119,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libbson \
     libshims_camera \
-    Camera2
+    Snap
 
 # Disable camera Treble path
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -282,7 +282,7 @@ PRODUCT_COPY_FILES += \
 
 # Qualcomm broadcast whitelist
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/privapp-permissions-qti.xml \
+	$(LOCAL_PATH)/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
 	$(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 # Ramdisk
