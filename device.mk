@@ -133,7 +133,10 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     libbson \
-    libshims_camera \
+    libshims_camera
+
+PRODUCT_PACKAGES += \
+    Doze
 
 # Disable camera Treble path
 PRODUCT_PROPERTY_OVERRIDES += \
