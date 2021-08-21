@@ -14,11 +14,6 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.0-service \
     android.hardware.broadcastradio@1.0-impl
 
-# Camera
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-service \
-    android.hardware.camera.provider@2.4-impl:32
-
 # Crypto
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.cryptfshw@1.0-service-dlsym-qti
@@ -79,10 +74,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service.athene
-
-# Power
-PRODUCT_PACKAGES += \
-	android.hardware.power@1.1-service-qti
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \

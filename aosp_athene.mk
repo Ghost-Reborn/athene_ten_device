@@ -22,8 +22,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# Inherit some common Arrow stuff.
-$(call inherit-product, vendor/arrow/config/common.mk)
+# Inherit some common aosp stuff.
+$(call inherit-product, vendor/aosp/config/common.mk)
 
 # Inherit from athene device
 $(call inherit-product, device/motorola/athene/device.mk)
@@ -35,10 +35,12 @@ $(call inherit-product, vendor/gapps/config.mk)
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_BOOTANIMATION_HALF_RES := true
+TARGET_BOOT_ANIMATION_RES := 720
+TARGET_GAPPS_ARCH := arm64
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := athene
-PRODUCT_NAME := arrow_athene
+PRODUCT_NAME := aosp_athene
 PRODUCT_RELEASE_NAME := athene
 PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
