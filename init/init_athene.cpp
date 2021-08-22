@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2014, The Linux Foundation. All rights reserved.
+   Copyright (c) 2016, The CyanogenMod Project
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -25,139 +25,70 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <fcntl.h>
 #include <stdlib.h>
+#include <sys/sysinfo.h>
+
+#include "vendor_init.h"
+#include "property_service.h"
+#include "log/log.h"
+
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
-#include <stdio.h>
 
-#include "android-base/properties.h"
-#include "property_service.h"
-#include "vendor_init.h"
+char const *heaptargetutilization;
+char const *heapminfree;
+char const *heapmaxfree;
 
-using android::init::property_set;
-
-static void num_sims(void);
-static void target_ram(void);
-
-void property_override(char const prop[], char const value[])
+void check_device()
 {
-    prop_info *pi;
+    struct sysinfo sys;
 
-    pi = (prop_info*) __system_property_find(prop);
-    if (pi)
-        __system_property_update(pi, value, strlen(value));
-    else
-        __system_property_add(prop, strlen(prop), value, strlen(value));
+    sysinfo(&sys);
+
+    if (sys.totalram > 2048ull * 1024 * 1024) {
+        // from phone-xhdpi-4096-dalvik-heap.mk
+        heaptargetutilization = "0.6";
+        heapminfree = "8m";
+        heapmaxfree = "16m";
+    } else {
+        // from phone-xhdpi-2048-dalvik-heap.mk
+        heaptargetutilization = "0.75";
+        heapminfree = "512k";
+        heapmaxfree = "8m";
+   }
 }
 
-void property_override_triple(char const product_prop[], char const system_prop[], char const vendor_prop[], char const value[])
+void property_override(char const prop[], char const value[], bool add = true)
 {
-    property_override(product_prop, value);
-    property_override(system_prop, value);
-    property_override(vendor_prop, value);
+    auto pi = (prop_info *) __system_property_find(prop);
+
+    if (pi != nullptr) {
+        __system_property_update(pi, value, strlen(value));
+    } else if (add) {
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+    }
+}
+
+void set_avoid_gfxaccel_config() {
+    struct sysinfo sys;
+    sysinfo(&sys);
+
+    if (sys.totalram <= 2048ull * 1024 * 1024) {
+        // Reduce memory footprint
+        property_override("ro.config.avoid_gfx_accel", "true");
+    }
 }
 
 void vendor_load_properties()
 {
+    check_device();
+    set_avoid_gfxaccel_config();
 
-    std::string platform;
-    std::string device_boot;
-    std::string sku;
-    std::string radio;
-    std::string device;
-    std::string carrier;
-
-    device_boot = android::base::GetProperty("ro.boot.device", "");
-    property_set("ro.hw.device", device_boot.c_str());
-
-    sku = android::base::GetProperty("ro.boot.hardware.sku", "");
-
-    carrier = android::base::GetProperty("ro.boot.carrier", "");
-
-    radio = android::base::GetProperty("ro.boot.radio", "");
-    property_set("ro.hw.radio", radio.c_str());
-
-    /* Common for all models */
-    property_override("ro.build.product", "athene");
-    target_ram();
-    num_sims();
-
-    if (device_boot == "athene_13mp") {
-        /* Moto G4 (XT162x) */
-        property_override_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "athene");
-        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "Moto G4");
-        property_set("ro.telephony.default_network", "10");
-    } else {
-        /* Moto G4 Plus (XT164x) */
-        property_override_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "athene_f");
-        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "Moto G4 Plus");
-        property_set("ro.telephony.default_network", "10,0");
-    }
-
-   if (sku == "XT1625" || sku == "XT1644") {
-       property_set("net.tethering.noprovisioning", "true");
-        property_set("persist.radio.is_wps_enabled", "true");
-        property_set("ro.radio.imei.sv", "4");
-        property_set("tether_dun_required", "0");
-   }
-
-    if (sku == "XT1621" || sku == "XT1622" || sku == "XT1640" || sku == "XT1642" || sku == "XT1643") {
-        if (radio == "India") {
-            property_set("ro.radio.imei.sv", "9");
-            property_set("persist.radio.is_wps_enabled", "true");
-        } else {
-            property_set("ro.radio.imei.sv", "3");
-        }
-    }
-
-    if (sku == "XT1626" || sku == "XT1641") {
-        property_set("ro.radio.imei.sv", "2");
-        property_set("persist.radio.is_wps_enabled", "true");
-        property_set("persist.radio.pb.max.match", "10");
-    }
-	    // Magisk Hide
-    property_override("ro.boot.verifiedbootstate", "green");
-    property_override("ro.oem_unlock_supported", "0");
-    property_override("ro.boot.vbmeta.device_state", "locked");
-    property_override("ro.boot.veritymode", "enforcing");
-    property_override("ro.build.type", "user");
-    property_override("ro.build.tags", "release-keys");
-}
-
-/* Target-Specific Dalvik Heap & HWUI Configuration */
-static void target_ram(void) {
-    std::string ram;
-
-    ram = android::base::GetProperty("ro.boot.ram", "");
-
-    if (ram == "2GB") {
-        property_set("dalvik.vm.heapstartsize", "16m");
-        property_set("dalvik.vm.heapgrowthlimit", "192m");
-        property_set("dalvik.vm.heapsize", "512m");
-        property_set("dalvik.vm.heaptargetutilization", "0.75");
-        property_set("dalvik.vm.heapminfree", "2m");
-        property_set("dalvik.vm.heapmaxfree", "8m");
-    } else {
-        property_set("dalvik.vm.heapstartsize", "8m");
-        property_set("dalvik.vm.heapgrowthlimit", "288m");
-        property_set("dalvik.vm.heapsize", "768m");
-        property_set("dalvik.vm.heaptargetutilization", "0.75");
-        property_set("dalvik.vm.heapminfree", "512k");
-        property_set("dalvik.vm.heapmaxfree", "8m");
-    }
-}
-
-static void num_sims(void) {
-    std::string dualsim;
-
-    dualsim = android::base::GetProperty("ro.boot.dualsim", "");
-
-    property_set("ro.hw.dualsim", dualsim.c_str());
-
-    if (dualsim == "true") {
-        property_set("persist.radio.multisim.config", "dsds");
-        property_set("ro.telephony.ril.config", "simactivation");
-    } else {
-        property_set("persist.radio.multisim.config", "");
-    }
+    property_override("dalvik.vm.heapstartsize", "8m");
+    property_override("dalvik.vm.heapgrowthlimit", "192m");
+    property_override("dalvik.vm.heapsize", "512m");
+    property_override("dalvik.vm.heaptargetutilization", heaptargetutilization);
+    property_override("dalvik.vm.heapminfree", heapminfree);
+    property_override("dalvik.vm.heapmaxfree", heapmaxfree);
 }

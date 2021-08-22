@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
-#define ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
+
+#pragma once
 
 #include <android/hardware/light/2.0/ILight.h>
 #include <hardware/lights.h>
 #include <hidl/Status.h>
 #include <map>
 #include <mutex>
+#include <vector>
+
+using ::android::hardware::Return;
+using ::android::hardware::Void;
+using ::android::hardware::light::V2_0::Flash;
+using ::android::hardware::light::V2_0::ILight;
+using ::android::hardware::light::V2_0::LightState;
+using ::android::hardware::light::V2_0::Status;
+using ::android::hardware::light::V2_0::Type;
+
+typedef void (*LightStateHandler)(const LightState&);
+
+struct LightBackend {
+    Type type;
+    LightState state;
+    LightStateHandler handler;
+
+    LightBackend(Type type, LightStateHandler handler) : type(type), handler(handler) {
+        this->state.color = 0xff000000;
+    }
+};
 
 namespace android {
 namespace hardware {
@@ -28,20 +49,10 @@ namespace light {
 namespace V2_0 {
 namespace implementation {
 
-using ::android::hardware::Return;
-using ::android::hardware::Void;
-using ::android::hardware::hidl_vec;
-using ::android::hardware::light::V2_0::ILight;
-using ::android::hardware::light::V2_0::LightState;
-using ::android::hardware::light::V2_0::Status;
-using ::android::hardware::light::V2_0::Type;
-
 class Light : public ILight {
   public:
-    Light();
-
-    Return<Status> setLight(Type type, const LightState& state)  override;
-    Return<void> getSupportedTypes(getSupportedTypes_cb _hidl_cb)  override;
+    Return<Status> setLight(Type type, const LightState& state) override;
+    Return<void> getSupportedTypes(getSupportedTypes_cb _hidl_cb) override;
 
   private:
     std::mutex globalLock;
@@ -52,6 +63,3 @@ class Light : public ILight {
 }  // namespace light
 }  // namespace hardware
 }  // namespace android
-
-#endif  // ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
-

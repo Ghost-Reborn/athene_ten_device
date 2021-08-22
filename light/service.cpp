@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 The LineageOS Project
+ * Copyright (C) 2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.light@2.0-service.athene"
+#define LOG_TAG "android.hardware.light@2.0-service.motorola_athene"
 
 #include <hidl/HidlTransportSupport.h>
 
@@ -31,7 +31,7 @@ using android::sp;
 using android::status_t;
 
 int main() {
-    android::sp<ILight> service = new Light();
+    sp<ILight> service = new Light();
 
     configureRpcThreadpool(1, true);
 
@@ -48,4 +48,3 @@ int main() {
     ALOGI("Light HAL service failed to join thread pool.");
     return 1;
 }
-

@@ -1,23 +1,23 @@
-Device Tree for Moto G4/G4 Plus (athene)
-===========================================
+# Device Tree for Xiaomi Redmi Note 4 & 4x (Mido)
 
-The Moto G4/G4 Plus (codenamed _"athene"_) is a mid-range smartphone from Motorola Mobility.
-It was released in May,2016.
+## Spec Sheet
 
-Basic   | Spec Sheet
--------:|:-------------------------
-CPU     | Octa-core 1.5/1.2 GHz Cortex-A53
-Chipset | Qualcomm MSM8952 Snapdragon 617
-GPU     | Adreno 405
-Memory  | 2/3/4 GB RAM
-Shipped Android Version | 6.0.1 (upgradable to 7.0, 8.1 for G4 Plus)
-Storage | 16/32/64 GB
-MicroSD | Up to 256 GB
-Battery | Li-Ion 3000mAh battery
-Display | 1080 x 1920 pixels, 5.5 inches (~401 ppi pixel density)
-Camera  | 12/16 MP, autofocus, LED flash
+| Feature                 | Specification                     |
+| :---------------------- | :-------------------------------- |
+| CPU                     | Octa-core 2.0 GHz Cortex-A53      |
+| Chipset                 | Qualcomm MSM8953 Snapdragon 625   |
+| GPU                     | Adreno 506                        |
+| Memory                  | 2/3/4 GB                          |
+| Shipped Android Version | 6.0.1                             |
+| Storage                 | 32/64 GB                          |
+| MicroSD                 | Up to 256 GB                      |
+| Battery                 | 4100 mAh (non-removable)          |
+| Dimensions              | 151 x 76 x 8.5 mm                 |
+| Display                 | 1920x1080 pixels, 5.5 (~401 PPI)  |
+| Rear Camera             | 13 MP, LED flash                  |
+| Front Camera            | 5 MP                              |
+| Release Date            | January 2017                      |
 
-Copyright 2016 - The CyanogenMod Project.
-Copyright 2017 - The LineageOS Project.
+## Device Picture
 
-![Moto G4 Plus](http://images.fonearena.com/blog/wp-content/uploads/2016/05/Moto-G4-Plus_fonearena-16-1024x742.jpg "Moto G4 Plus")
+![Redmi Note 4](http://i01.appmifile.com/webfile/globalimg/7/537557F3-A4F1-2490-E9D3-138B2A11DBF6.png "Redmi Note 4")
