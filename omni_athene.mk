@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016-19 TeamWin Recovery Project
+# Copyright (C) 2016-19 The TeamWin Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_athene.mk
+# Inherit from Omni common config
+$(call inherit-product, vendor/omni/config/common.mk)
+
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := athene
+PRODUCT_NAME := omni_athene
+PRODUCT_BRAND := motorola
+PRODUCT_MODEL := Moto G4 Plus
+PRODUCT_MANUFACTURER := motorola
