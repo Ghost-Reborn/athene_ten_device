@@ -16,7 +16,8 @@
 
 DEVICE_PATH := device/motorola/athene
 
-BOARD_VENDOR := motorola-qcom
+# Build Broken
+BUILD_BROKEN_DUP_RULES := true
 
 # AIDs and CAPS
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -26,27 +27,20 @@ TARGET_OTA_ASSERT_DEVICE := athene,athene_f,xt1621,xt1622,xt1625,xt1626,xt1640,x
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8952
+BOARD_VENDOR := motorola-qcom
+BOARD_USES_QCOM_HARDWARE := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8952
 TARGET_NO_BOOTLOADER := true
 
 # Architecture
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-BOARD_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-BOARD_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
-TARGET_CPU_SMP := true
-
-TARGET_CPU_CORTEX_A53 := true
-
-BUILD_BROKEN_DUP_RULES := true
+TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
@@ -176,16 +170,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Extended filesystem support
 TARGET_EXFAT_DRIVER := sdfat
 
-# Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-    endif
-  endif
-endif
-
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
@@ -198,11 +182,10 @@ TARGET_HW_DISK_ENCRYPTION := true
 TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 TARGET_USES_METADATA_AS_FDE_KEY := true
 
-#Enable peripheral manager
+# Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
-# Qualcomm support
-BOARD_USES_QCOM_HARDWARE := true
+# Time Services
 BOARD_USES_QC_TIME_SERVICES := true
 
 # Malloc
@@ -219,16 +202,6 @@ BOARD_USES_QCNE := true
 
 # Sensors
 USE_SENSOR_MULTI_HAL := true
-#BOARD_USES_MOT_SENSOR_HUB := true
-#BOARD_USES_CAP_SENSOR_SX9310 := true
-#MOT_SENSOR_HUB_HW_TYPE_L0 := true
-#MOT_AP_SENSOR_HW_REARPROX := true
-#MOT_SENSOR_HUB_HW_BMI160 := true
-#MOT_SENSOR_HUB_FEATURE_CHOPCHOP := true
-#MOT_SENSOR_HUB_FEATURE_LIFT := true
-#MOT_SENSOR_HUB_FEATURE_PEDO := true
-#MOT_SENSOR_HUB_FEATURE_LA := true
-#MOT_SENSOR_HUB_FEATURE_GR := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/recovery.fstab
@@ -246,8 +219,6 @@ VENDOR_SECURITY_PATCH := 2018-12-01
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
 
 # SELinux
-#include device/qcom/sepolicy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/legacy
 
 # Power

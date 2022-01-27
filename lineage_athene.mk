@@ -22,11 +22,6 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from athene device
 $(call inherit-product, device/motorola/athene/device.mk)
 
-# Boot animation
-TARGET_SCREEN_WIDTH := 1080
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_BOOTANIMATION_HALF_RES := true
-
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := athene
 PRODUCT_NAME := lineage_athene
@@ -34,14 +29,6 @@ PRODUCT_RELEASE_NAME := athene
 PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
 
-BOARD_VENDOR := motorola
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-	PRIVATE_BUILD_DESC="athene_f-user 8.1.0 OPJ28.111 22 release-keys" \
-
-PRODUCT_ENFORCE_RRO_TARGETS := \
-    framework-res
-
-# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := motorola/athene/athene:7.0/NPJS25.93-14-13/3:user/release-keys
-VENDOR_BUILD_FINGERPRINT := motorola/athene/athene:7.0/NPJS25.93-14-13/3:user/release-keys
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
