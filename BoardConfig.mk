@@ -16,6 +16,9 @@
 
 DEVICE_PATH := device/motorola/athene
 
+# Soong
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
+
 # Build Broken
 BUILD_BROKEN_DUP_RULES := true
 
