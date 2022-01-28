@@ -1,0 +1,5 @@
+cc_binary_host {
+    name: "dtbTool_custom",
+    srcs: ["dtbtool.c"],
+    cflags: ["-Wall"],
+}
