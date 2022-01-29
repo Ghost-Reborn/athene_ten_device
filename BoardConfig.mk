@@ -179,6 +179,7 @@ TARGET_EXFAT_DRIVER := sdfat
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Manifest
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 
