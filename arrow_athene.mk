@@ -28,9 +28,6 @@ $(call inherit-product, vendor/arrow/config/common.mk)
 # Inherit from athene device
 $(call inherit-product, device/motorola/athene/device.mk)
 
-# Inherit Gapps
-$(call inherit-product, vendor/gapps/config.mk)
-
 # Boot animation
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
