@@ -123,7 +123,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libbson \
     libshims_camera \
-    Snap
+    Snap \
+    Camera2
 
 PRODUCT_PACKAGES += \
     Doze
