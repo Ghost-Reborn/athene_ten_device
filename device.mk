@@ -126,9 +126,6 @@ PRODUCT_PACKAGES += \
     Snap \
     Camera2
 
-PRODUCT_PACKAGES += \
-    Doze
-
 # Disable camera Treble path
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_treble=true

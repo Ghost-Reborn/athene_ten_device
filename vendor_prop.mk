@@ -71,7 +71,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	camera.lowpower.record.enable=1 \
 	persist.vendor.camera.display.umax=1920x1080 \
 	persist.vendor.camera.display.lmax=1280x720 \
-	persist.camera.HAL3.enabled=0 \
+	persist.camera.HAL3.enabled=1 \
 	persist.camera.gyro.disable=0 \
 	camera.hal1.packagelist=com.skype.raider \
 	media.camera.ts.monotonic=1
@@ -253,6 +253,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Rescue party
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.disable_rescue=true
+
+# Network manager
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.iwlan_operation_mode=legacy
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \

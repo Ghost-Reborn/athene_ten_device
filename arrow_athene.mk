@@ -15,12 +15,8 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
 
 # Inherit some common Arrow stuff.
 $(call inherit-product, vendor/arrow/config/common.mk)
@@ -31,7 +27,7 @@ $(call inherit-product, device/motorola/athene/device.mk)
 # Boot animation
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
-TARGET_BOOTANIMATION_HALF_RES := true
+TARGET_BOOT_ANIMATION_RES := 1080
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := athene
@@ -39,17 +35,11 @@ PRODUCT_NAME := arrow_athene
 PRODUCT_RELEASE_NAME := athene
 PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
-
-BOARD_VENDOR := motorola
+DEVICE_MAINTAINER := GhostReborn
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
 	PRIVATE_BUILD_DESC="coral-user 11 RQ1A.201205.008 6943376 release-keys" \
-	PRODUCT_NAME="athene" \
-	TARGET_DEVICE="athene" \
 	DEVICE_MAINTAINERS="GhostReborn"
-
-PRODUCT_ENFORCE_RRO_TARGETS := \
-    framework-res
 
 #Lawncahir remove
 TARGET_EXCLUDE_LAWNCHAIR := true
