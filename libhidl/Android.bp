@@ -3,9 +3,6 @@ cc_library_shared {
     vendor_available: true,
     shared_libs: [
     ],
-    visibility: [
-        "//device/motorola/athene/libhidl",
-    ],
     clang_cflags: ["-Wno-error=unused-const-variable"],
     export_shared_lib_headers: [
     ],
@@ -19,9 +16,6 @@ cc_library_shared {
     name: "android.hidl.manager@1.0",
     vendor_available: true,
     shared_libs: [
-    ],
-    visibility: [
-        "//device/motorola/athene/libhidl",
     ],
     clang_cflags: ["-Wno-error=unused-const-variable"],
     export_shared_lib_headers: [
