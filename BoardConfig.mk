@@ -18,6 +18,10 @@ DEVICE_PATH := device/motorola/athene
 
 BOARD_VENDOR := motorola-qcom
 
+# Soong
+PRODUCT_SOONG_NAMESPACES += \
+    $(DEVICE_PATH)
+
 # AIDs and CAPS
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 

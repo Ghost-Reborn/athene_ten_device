@@ -20,12 +20,13 @@ cc_binary {
     proprietary: true,
     init_rc: ["android.hardware.light@2.0-service.athene.rc"],
     srcs: ["service.cpp", "Light.cpp"],
+    visibility: [
+        "//device/motorola/athene/libhidl",
+    ],
     shared_libs: [
         "libhardware",
         "libhidlbase",
-        "libhidltransport",
         "liblog",
-        "libhwbinder",
         "libutils",
         "android.hardware.light@2.0",
     ],
