@@ -25,5 +25,4 @@ VNDK_SP_LIBRARIES := \
     libion \
     liblzma \
     libpng \
-    libunwind \
     libutils \
