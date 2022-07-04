@@ -16,8 +16,8 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/arrow_athene.mk
+    $(LOCAL_DIR)/lineage_athene.mk
 
 COMMON_LUNCH_CHOICES := \
-    arrow_athene-userdebug \
-    arrow_athene-eng
+    lineage_athene-userdebug \
+    lineage_athene-eng
