@@ -18,6 +18,10 @@
 # Also get non-open-source specific aspects if available
 $(call inherit-product, vendor/motorola/athene/athene-vendor.mk)
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
+
 # Properties
 -include device/motorola/athene/vendor_prop.mk
 
@@ -65,7 +69,11 @@ PRODUCT_COPY_FILES += \
 # Motorola Camera permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera/com.motorola.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.motorola.camera.xml \
-    $(LOCAL_PATH)/configs/camera/com.motorola.cameraone.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.motorola.cameraone.xml \
+    $(LOCAL_PATH)/configs/camera/com.motorola.cameraone.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.motorola.cameraone.xml
+
+# Kernel
+PRODUCT_COPY_FILES += \
+    device/motorola/athene-kernel/dt.img:$(PRODUCT_OUT)/dt.img 
 
 # External camera
 PRODUCT_COPY_FILES += \
